@@ -1,0 +1,72 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package finalproject1;
+import java.awt.*;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+
+public class myJFrame extends JFrame implements ActionListener
+{
+	private JPanel contentPane;
+	homePanel home;
+	optionsPanel options;
+	tutorialPanel tutorial;
+	public myJFrame ()
+	{
+		super ("We are space invaders!");
+
+		contentPane = new JPanel();
+        contentPane.setLayout(new CardLayout());
+		
+		home = new homePanel();
+		options = new optionsPanel();
+		tutorial = new tutorialPanel();
+		registerButtons();
+		
+        contentPane.add(home, "Home"); 
+        contentPane.add(options, "Options");
+        contentPane.add(tutorial, "Tutorial");
+
+		getContentPane().setLayout(new BorderLayout());
+		setContentPane(contentPane);
+
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		pack();
+		setLocationByPlatform(true);
+		setSize (1365, 1024);
+		setVisible(true);
+		setResizable(false);
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		Object source = e.getSource();
+		CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+		
+		if(source.equals(home.playBtn)){
+			
+		}else if(source.equals(home.tutorialBtn)){
+			cardLayout.show(contentPane, "Tutorial");
+		}else if(source.equals(home.optionsBtn)){
+			cardLayout.show(contentPane, "Options");
+		}else if(source.equals(options.homeBtn)){
+			cardLayout.show(contentPane, "Home");
+		}else if(source.equals(tutorial.homeBtn)){
+			cardLayout.show(contentPane, "Home");
+		}
+	}
+	
+	private void registerButtons(){
+		home.playBtn.addActionListener(this);
+		home.tutorialBtn.addActionListener(this);
+		home.optionsBtn.addActionListener(this);
+		options.homeBtn.addActionListener(this);
+		tutorial.homeBtn.addActionListener(this);
+	}
+}

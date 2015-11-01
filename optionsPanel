@@ -1,0 +1,45 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package finalproject1;
+import java.awt.*;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+public class optionsPanel extends JPanel
+{
+	public JButton homeBtn;
+	
+	public optionsPanel()
+	{
+		
+		setLayout(null);
+		
+		Dimension size = new Dimension(200, 50);
+		Insets insets = this.getInsets();
+		//=====================================
+		
+		homeBtn = new JButton("Back Home");
+		add(homeBtn);
+		homeBtn.setBounds((1365/2 - size.width/2) + insets.left, 605 + insets.top,
+	             size.width, size.height);
+	}
+	
+	  public void paintComponent(Graphics g) {
+		 BufferedImage backImage;
+		try {
+			backImage = ImageIO.read(getClass().getResource("images/homeBg.jpg"));
+			g.drawImage(new ImageIcon(backImage).getImage(), 0, 0, null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	  }
+
+}
